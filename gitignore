@@ -1,0 +1,13 @@
+# simulator output
+build/
+*.vcd
+sim
+a.out
+
+# python
+__pycache__/
+*.pyc
+
+# editor / os
+.vscode/
+.DS_Store
