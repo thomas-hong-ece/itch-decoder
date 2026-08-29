@@ -13,8 +13,10 @@
 
 module tb_itch_decoder;
 
+`include "params.vh"
+
     localparam MSG_LEN  = 36;
-    localparam MAX_MSGS = 256;
+    localparam MAX_MSGS = `N_MSGS;
 
     reg clk = 1'b0;
     reg rst_n = 1'b0;
@@ -66,10 +68,9 @@ module tb_itch_decoder;
         $dumpfile("sim.vcd");
         $dumpvars(0, tb_itch_decoder);
 
-        if ($value$plusargs("nmsgs=%d", n_msgs) == 0) n_msgs = 0;
+        n_msgs = `N_MSGS;
         $readmemh("build/packets.hex",  pkt_mem);
         $readmemh("build/expected.hex", exp_mem);
-        if (n_msgs == 0) n_msgs = 8;
 
         repeat (4) @(posedge clk);
         rst_n = 1'b1;
